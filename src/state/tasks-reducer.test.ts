@@ -1,5 +1,5 @@
 import { v1 } from "uuid";
-import {TasksStateType} from "../App";
+import {TasksStateType} from "../AppReducer";
 import {
     addTitleTaskAC,
     deleteTitleTaskAC,
