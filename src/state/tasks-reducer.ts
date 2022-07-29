@@ -6,8 +6,6 @@ export type DeleteTitleTaskACType = ReturnType<typeof deleteTitleTaskAC>
 export type AddTitleTaskACType = ReturnType<typeof addTitleTaskAC>
 export type NewIsDoneTaskACType = ReturnType<typeof newIsDoneTaskAC>
 export type NewTitleTaskACType = ReturnType<typeof newTitleTaskAC>
-// export type NewTodoListTasksACType = ReturnType<typeof newTodoListTasksAC>
-//export type DeleteTodoListTasksACType = ReturnType<typeof deleteTodoListTasksAC>
 
 type ActionsType = DeleteTitleTaskACType | AddTitleTaskACType | NewIsDoneTaskACType
     | NewTitleTaskACType | AddTodolistACType | RemoveTodolistACType
@@ -40,21 +38,11 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
                     title: action.newTitle
                 } : el)
             }
-        // case 'NEW-TODOLIST-TASKS':
-        //     return {
-        //         ...state,
-        //         [action.toDoListID]: []
-        //     }
         case 'ADD-TODOLIST':
             return {
                 ...state,
                 [action.payload.toDoListID]: []
             }
-        // case 'DELETE-TODOLIST-TASKS': {
-        //     const copyState = {...state}
-        //     delete copyState[action.toDoListID]
-        //     return copyState
-        //}
         case 'REMOVE-TODOLIST': {
             let {[action.payload.todoID]: remove, ...copyState} = {...state}
             return copyState
@@ -76,9 +64,3 @@ export const newIsDoneTaskAC = (toDoListID: string, taskID: string, newIsDone: b
 export const newTitleTaskAC = (toDoListID: string, taskID: string, newTitle: string) => {
     return {type: 'NEW-TITLE-TASK', toDoListID, taskID, newTitle} as const
 }
-// export const newTodoListTasksAC = (toDoListID: string) => {
-//     return {type: 'NEW-TODOLIST-TASKS', toDoListID} as const
-// }
-// export const deleteTodoListTasksAC = (toDoListID: string) => {
-//     return {type: 'DELETE-TODOLIST-TASKS', toDoListID} as const
-// }
