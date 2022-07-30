@@ -3,14 +3,8 @@ import './App.css';
 import {TaskType, Todolist} from './Todolist';
 import {AddItemForm} from './AddItemForm';
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@mui/material';
-import { Menu } from '@mui/icons-material';
-import {
-    addTodolistAC,
-    changeFilterAC,
-    changeTodolistTitleAC,
-    removeTodolistAC,
-} from "./state/todolists-reducer";
-import {addTitleTaskAC, deleteTitleTaskAC, newIsDoneTaskAC, newTitleTaskAC} from "./state/tasks-reducer";
+import {Menu} from '@mui/icons-material';
+import {addTodolistAC,} from "./state/todolists-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStoreType} from "./Redux/store";
 
@@ -25,38 +19,14 @@ export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
-function AppReducer() {
+function AppRedux() {
 
-    const dispatch =  useDispatch()
+    const dispatch = useDispatch()
+
     const todolists = useSelector<AppRootStoreType, Array<TodolistType>>(state => state.todoList)
-    const tasks = useSelector<AppRootStoreType, TasksStateType>(state => state.tasks)
 
-    function removeTask(id: string, todolistId: string) {
-        dispatch(deleteTitleTaskAC(todolistId, id))
-    }
-
-    function addTask(title: string, todolistId: string) {
-        dispatch(addTitleTaskAC(todolistId, title))
-    }
-    function changeStatus(id: string, isDone: boolean, todolistId: string) {
-        dispatch(newIsDoneTaskAC(todolistId, id, isDone))
-    }
-    function changeTaskTitle(id: string, newTitle: string, todolistId: string) {
-        dispatch(newTitleTaskAC(todolistId, id, newTitle))
-    }
-
-    function changeFilter(value: FilterValuesType, todolistId: string) {
-        dispatch(changeFilterAC(todolistId, value))
-    }
-    function removeTodolist(id: string) {
-        dispatch(removeTodolistAC(id))
-    }
-    function changeTodolistTitle(id: string, title: string) {
-        dispatch(changeTodolistTitleAC(id, title))
-    }
     function addTodolist(title: string) {
-        const action = addTodolistAC(title)
-        dispatch(action)
+        dispatch(addTodolistAC(title))
     }
 
     return (
@@ -79,31 +49,10 @@ function AppReducer() {
                 <Grid container spacing={3}>
                     {
                         todolists.map(tl => {
-                            let allTodolistTasks = tasks[tl.id];
-                            let tasksForTodolist = allTodolistTasks;
-
-                            if (tl.filter === "active") {
-                                tasksForTodolist = allTodolistTasks.filter(t => t.isDone === false);
-                            }
-                            if (tl.filter === "completed") {
-                                tasksForTodolist = allTodolistTasks.filter(t => t.isDone === true);
-                            }
-
-                            return <Grid item>
+                            return <Grid item key={tl.id}>
                                 <Paper style={{padding: "10px"}}>
                                     <Todolist
-                                        key={tl.id}
-                                        id={tl.id}
-                                        title={tl.title}
-                                        tasks={tasksForTodolist}
-                                        removeTask={removeTask}
-                                        changeFilter={changeFilter}
-                                        addTask={addTask}
-                                        changeTaskStatus={changeStatus}
-                                        filter={tl.filter}
-                                        removeTodolist={removeTodolist}
-                                        changeTaskTitle={changeTaskTitle}
-                                        changeTodolistTitle={changeTodolistTitle}
+                                        todolist={tl}
                                     />
                                 </Paper>
                             </Grid>
@@ -115,4 +64,4 @@ function AppReducer() {
     );
 }
 
-export default AppReducer;
+export default AppRedux;

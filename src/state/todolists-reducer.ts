@@ -1,4 +1,4 @@
-import {FilterValuesType, TodolistType} from "../AppReducer";
+import {FilterValuesType, TodolistType} from "../AppRedux";
 import {v1} from "uuid";
 
 export type RemoveTodolistACType = ReturnType<typeof removeTodolistAC>
