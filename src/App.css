@@ -1,10 +1,10 @@
 /*
-.AppReducer {
+.App {
   padding: 30px;
   display: flex;
 }
 
-.AppReducer > div {
+.App > div {
   margin-right: 50px;
 }
 
