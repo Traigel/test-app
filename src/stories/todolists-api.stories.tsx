@@ -1,9 +1,8 @@
-import axios from 'axios'
 import React, {useEffect, useState} from 'react'
 import {ToDoApi} from "../api/api";
 
 export default {
-    title: 'API'
+    title: 'TodolistsAPI'
 }
 
 export const GetTodolists = () => {
@@ -19,7 +18,7 @@ export const GetTodolists = () => {
 export const CreateTodolist = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        ToDoApi.postTodos('ToDoList')
+        ToDoApi.postTodos('new___ToDoList')
             .then(res => {
                 setState(res.data.data.item)
             })
@@ -30,7 +29,7 @@ export const CreateTodolist = () => {
 export const DeleteTodolist = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        ToDoApi.deleteTodos('db6f7630-5d7a-40e2-8190-47c96e9a7aed')
+        ToDoApi.deleteTodos('84b897d1-4b82-454d-a9f0-a07ed9b81c3d')
             .then(res => {
                 setState(res.data)
             })
@@ -41,7 +40,7 @@ export const DeleteTodolist = () => {
 export const UpdateTodolistTitle = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        ToDoApi.putTodos('7d19b6eb-b564-4da7-994c-e8035bd74f80', 'newToDoList')
+        ToDoApi.putTodos('e85b39c5-c325-4647-8b71-787910c25158', 'Skills')
             .then(res => {
                 setState(res.data)
             })
