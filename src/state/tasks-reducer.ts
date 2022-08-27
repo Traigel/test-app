@@ -1,5 +1,5 @@
 import {TasksStateType} from '../App';
-import {AddTodolistActionType, RemoveTodolistActionType, setTodoListType} from './todolists-reducer';
+import {addTodolistACType, removeTodolistACType, setTodoListType} from './todolists-reducer';
 import {TaskType, todolistsAPI} from '../api/todolists-api'
 import {Dispatch} from "redux";
 import {AppRootStateType} from "./store";
@@ -9,9 +9,7 @@ export type updateTaskACType = ReturnType<typeof updateTaskAC>
 export type removeTaskACType = ReturnType<typeof removeTaskAC>
 export type addTaskACType = ReturnType<typeof addTaskAC>
 
-type ActionsType =
-    | AddTodolistActionType
-    | RemoveTodolistActionType | setTodoListType | setTasksACType | updateTaskACType | removeTaskACType | addTaskACType
+type ActionsType = removeTodolistACType | setTodoListType | setTasksACType | updateTaskACType | removeTaskACType | addTaskACType | addTodolistACType
 
 const initialState: TasksStateType = {}
 
