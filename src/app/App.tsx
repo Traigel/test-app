@@ -1,29 +1,26 @@
 import React from 'react'
 import './App.css'
 import { TodolistsList } from '../features/TodolistsList/TodolistsList'
-import { useSelector } from 'react-redux'
-import { AppRootStateType } from './store'
-import { RequestStatusType } from './app-reducer'
+
+// You can learn about the difference by reading this guide on minimizing bundle size.
+// https://mui.com/guides/minimizing-bundle-size/
+// import { AppBar, Button, Container, IconButton, Toolbar, Typography } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import LinearProgress from '@mui/material/LinearProgress';
-import {Login, Menu } from '@mui/icons-material';
-import { ErrorSnackbar } from '../components/ErrorSnackbar/ErrorSnackbar'
-import {Route} from "react-router-dom";
+import { Menu } from '@mui/icons-material';
+import { LinearProgress } from '@mui/material';
+import {CustomizedSnackbars} from "../components/ErrorSnackbar/ErrorSnackbar";
 
-type PropsType = {
-    demo?: boolean
-}
 
-function App({demo = false}: PropsType) {
-    const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
+function App() {
+
     return (
         <div className="App">
-            <ErrorSnackbar/>
+            <CustomizedSnackbars/>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu">
@@ -34,15 +31,11 @@ function App({demo = false}: PropsType) {
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
-                {status === 'loading' && <LinearProgress/>}
+                <LinearProgress/>
             </AppBar>
             <Container fixed>
-                <Routes>
-                    <Route />
-                </Routes>
-                <TodolistsList demo={demo}/>
+                <TodolistsList/>
             </Container>
-            <Login/>
         </div>
     )
 }
