@@ -12,11 +12,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { Menu } from '@mui/icons-material';
-import { LinearProgress } from '@mui/material';
+
 import {CustomizedSnackbars} from "../components/ErrorSnackbar/ErrorSnackbar";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "./store";
 import {RequestStatusType} from "./app-reducer";
+import LinearProgress from '@mui/material/LinearProgress';
 
 
 function App() {
